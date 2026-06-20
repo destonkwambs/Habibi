@@ -1,0 +1,6 @@
+{
+  "name": "Habibi Companion",
+  "description": "A deeply personal, emotionally intelligent AI assistant built exclusively for Stentuner, integrated with Google Workspace and Firebase.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

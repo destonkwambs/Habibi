@@ -1,0 +1,74 @@
+{
+  "entities": {
+    "chatSession": {
+      "title": "Chat Session",
+      "description": "A conversation thread between Stentuner and Habibi",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "title": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "title"]
+    },
+    "chatMessage": {
+      "title": "Chat Message",
+      "description": "An individual message in a chat session",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "sessionId": { "type": "string" },
+        "userId": { "type": "string" },
+        "role": { "type": "string", "enum": ["user", "model"] },
+        "content": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["sessionId", "userId", "role", "content"]
+    },
+    "memoryItem": {
+      "title": "Habibi Memory",
+      "description": "Key items and preferences Habibi tracks to remain personal",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "fact": { "type": "string" },
+        "category": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "fact"]
+    },
+    "userSetting": {
+      "title": "User Configurations",
+      "description": "Stentuner's custom persona settings for Habibi",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "nickname": { "type": "string" },
+        "theme": { "type": "string" },
+        "voiceName": { "type": "string" }
+      },
+      "required": ["userId"]
+    }
+  },
+  "firestore": {
+    "/chatSessions/{sessionId}": {
+      "schema": "chatSession",
+      "description": "Stores user chat sessions"
+    },
+    "/chatSessions/{sessionId}/messages/{messageId}": {
+      "schema": "chatMessage",
+      "description": "Stores messages within a chat session"
+    },
+    "/memories/{memoryId}": {
+      "schema": "memoryItem",
+      "description": "Stores Stentuner's profile memories"
+    },
+    "/userSettings/{userId}": {
+      "schema": "userSetting",
+      "description": "Stores individual user setups"
+    }
+  }
+}
